@@ -11,19 +11,12 @@ from models import Car as CarModel, Model as ModelModel, get_brand, get_model, g
 class Brand(graphene.ObjectType):
     name = graphene.String()
 
-    # models = graphene.List(Model)
-
     class Meta:
         interfaces = (relay.Node,)
 
     @classmethod
     def get_node(cls, info, id):
         return get_brand(id)
-
-    """
-    def resolve_models(self, info, *args, **kwargs):
-        return get_model(info, self.id)
-    """
 
 
 class Model(SQLAlchemyObjectType):
